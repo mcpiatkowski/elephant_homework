@@ -11,7 +11,7 @@ cycle = []
 
 
 for counter in range(num_of_elephants):
-    elephants_masses[elephants[counter]] = masses[counter]
+    elephants_masses[counter+1] = masses[counter]
 
 print("ELEPHANTS MASSES: ", elephants_masses)
 print('')
@@ -23,15 +23,14 @@ for outerindex in range(num_of_elephants):
 
     if outerindex != 0:
         cycles.append(cycle)
-        cache = cycle
-        cycle = []
         for appended in cycles:
-            if appended == cache:
+            if appended == cycle:
                 break
-            for number in cache:
+            for number in cycle:
                 if number in appended:
                     cycles.pop()
                     break
+        cycle = []
 
     for innerindex in range(outerindex+1, num_of_elephants):
         print('###### innerindex = {} ######'.format(innerindex))
@@ -51,3 +50,9 @@ for outerindex in range(num_of_elephants):
 print("ELEPHANTS: ", elephants)
 print("EFFORT NOT OPTIMIZED: ", effort)
 print("CYCLES: ", cycles)
+
+for cycle in cycles:
+    for index, elephant in enumerate(cycle):
+        cycle[index] = elephants_masses[elephant]
+
+print("CYCLES WITH MASSES: ", cycles)
