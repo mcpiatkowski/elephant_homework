@@ -3,7 +3,6 @@ import sys
 masses = []
 elephants = []
 final_positions = []
-effort = 0
 elephants_masses = {}
 
 cycles = []
@@ -29,7 +28,6 @@ for counter in range(num_of_elephants):
 for outerindex in range(num_of_elephants):
     current_elephant = elephants[outerindex]
     position = outerindex
-
     if outerindex != 0:
         cycles.append(cycle)
         for appended in cycles:
@@ -41,12 +39,10 @@ for outerindex in range(num_of_elephants):
                     break
         cycle = []
 
-    for innerindex in range(outerindex+1, num_of_elephants):
+    for innerindex in range(outerindex+1, num_of_elephants+1):
         final_position = final_positions.index(current_elephant)
         cycle.append(current_elephant)
         if final_position != outerindex:
-            effort += (elephants_masses[elephants[final_position]
-                                        ] + elephants_masses[current_elephant])
             current_elephant, elephants[final_position] = elephants[final_position], current_elephant
         else:
             elephants[final_position] = current_elephant
