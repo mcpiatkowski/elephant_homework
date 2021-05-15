@@ -1,19 +1,33 @@
-num_of_elephants = 6
-masses = [2400, 2000, 1200, 2400, 1600, 4000]
-elephants = [1, 4, 5, 3, 6, 2]
-final_positions = [5, 3, 2, 4, 6, 1]
+import sys
 
+masses = []
+elephants = []
+final_positions = []
 effort = 0
 elephants_masses = {}
 
 cycles = []
 cycle = []
 
+input_data = sys.stdin.readlines()
+
+str_num_of_elephants = input_data[0].strip().split(' ')
+str_masses = input_data[1].strip().split(' ')
+str_elephants = input_data[2].strip().split(' ')
+str_final_positions = input_data[3].strip().split(' ')
+
+num_of_elephants = int(str_num_of_elephants[0])
+
+for counter in range(num_of_elephants):
+    masses.append(int(str_masses[counter]))
+    elephants.append(int(str_elephants[counter]))
+    final_positions.append(int(str_final_positions[counter]))
 
 for counter in range(num_of_elephants):
     elephants_masses[counter+1] = masses[counter]
 
 for outerindex in range(num_of_elephants):
+    print("OUTERINDEX", outerindex)
     current_elephant = elephants[outerindex]
     position = outerindex
 
@@ -29,6 +43,7 @@ for outerindex in range(num_of_elephants):
         cycle = []
 
     for innerindex in range(outerindex+1, num_of_elephants):
+        print("INNERINDEX: ", innerindex)
         final_position = final_positions.index(current_elephant)
         cycle.append(current_elephant)
         if final_position != outerindex:
